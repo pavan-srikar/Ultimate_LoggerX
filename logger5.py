@@ -10,7 +10,7 @@ from telegram.ext import Updater, CommandHandler, CallbackContext
 import logging
 
 # Initialize Telegram bot with token
-TELEGRAM_BOT_TOKEN = "7633258412:AAGFGEgmR6MagBUXOwbdCxTVHhfRryA5OPs"
+TELEGRAM_BOT_TOKEN = "TELEGRAM_BOT_TOKEN"
 bot = Bot(TELEGRAM_BOT_TOKEN)
 
 # Set up logging for Telegram bot
