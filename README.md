@@ -1,6 +1,6 @@
-# Keylogger with Clipboard and Telegram Bot Integration
+# logger5 with Clipboard and Telegram Bot Integration
 
-This project is a **cross-platform keylogger** that tracks keystrokes, clipboard content, and logs events in a hidden JSON file. The JSON file can be retrieved or reset via a Telegram bot. This tool is intended for **educational purposes only**, allowing cybersecurity professionals to test keylogging detection capabilities on antivirus software.
+This project is a **cross-platform KeyLogger** that tracks keystrokes, clipboard content, and logs events in a hidden JSON file. The JSON file can be retrieved or reset via a Telegram bot. This tool is intended for **educational purposes only**, allowing cybersecurity professionals to test keylogging detection capabilities on antivirus software.
 
 ## Features
 
@@ -39,5 +39,37 @@ pip install os json pyperclip pynput platform python-telegram-bot
 - Clone this repository.
 - Run the script with Python:
   ```bash
-  python keylogger.py
+  python logger5.py
   ```
+- To compile into an executable, use:
+  ```bash
+  pyinstaller --onefile logger5.py
+  ```
+
+#### MAC
+
+- Clone this repository.
+- Run the script with Python:
+  ```bash
+  python3 logger5.py
+  ```
+- To compile into an executable, use:
+  ```bash
+  pyinstaller --onefile --windowed logger5.py
+
+  ```
+
+  #### Linux
+
+- Clone this repository.
+- Run the script with Python:
+  ```bash
+  python3 logger5.py
+  ```
+- To compile into an executable, use:
+  ```bash
+  pyinstaller --onefile logger5.py
+  ```
+
+### Usage Warning
+This tool is intended for legal, authorized use only. Unauthorized use of keyloggers can violate local, state, and federal privacy and data laws. Always obtain proper permissions before monitoring any device.
