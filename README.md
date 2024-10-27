@@ -71,5 +71,15 @@ pip install os json pyperclip pynput platform python-telegram-bot
   pyinstaller --onefile logger5.py
   ```
 
+## 📸 Screenshots
+
+Here's what the LoggerX looks like in action:
+
+![img1](./images/img1.png)
+*Running the bot*
+
+![Telegram Bot Interaction](./images/img2.png)
+*Using the bot through Telegram*
+
 ### Usage Warning
 This tool is intended for legal, authorized use only. Unauthorized use of keyloggers can violate local, state, and federal privacy and data laws. Always obtain proper permissions before monitoring any device.
