@@ -1,4 +1,4 @@
-# logger5 with Clipboard and Telegram Bot Integration
+# Keylogger with Clipboard and Telegram Bot Integration
 
 This project is a **cross-platform KeyLogger** that tracks keystrokes, clipboard content, and logs events in a hidden JSON file. The JSON file can be retrieved or reset via a Telegram bot. This tool is intended for **educational purposes only**, allowing cybersecurity professionals to test keylogging detection capabilities on antivirus software.
 
