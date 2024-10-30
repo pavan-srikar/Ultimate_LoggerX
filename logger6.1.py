@@ -1,3 +1,5 @@
+# basically v6 but reduced lines of code by GPT
+
 import os
 import json
 import pyperclip
@@ -10,7 +12,7 @@ from telegram.ext import Updater, CommandHandler, CallbackContext
 import logging
 
 # Initialize Telegram bot with token
-TELEGRAM_BOT_TOKEN = "TELEGRAM_BOT_TOKEN"
+TELEGRAM_BOT_TOKEN = "your api key"
 bot = Bot(TELEGRAM_BOT_TOKEN)
 
 # Set up logging
